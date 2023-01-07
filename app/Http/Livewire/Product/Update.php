@@ -41,7 +41,6 @@ class Update extends Component
     {
         $this->validate();
         Product::where('slug', $this->slug)->update([
-            'slug' => uniqid(),
             'name' => $this->name,
             'price' => $this->price,
             'units_contains' => $this->unitsContains,

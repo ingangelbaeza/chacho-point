@@ -1,6 +1,6 @@
 <div>
     <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Listado de productos</h1>
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Listado de compras</h1>
     </div>
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 grid justify-items-end">
         <button type="submit"
@@ -23,16 +23,19 @@
                                         #
                                     </th>
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                        Nombre
+                                        Fecha de compra
                                     </th>
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                        Precio
+                                        Nombre del producto
                                     </th>
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                        Unidades que contiene el producto
+                                        Cantidad comprada
                                     </th>
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                                        Precio por unidad del producto
+                                        Precio del prodcuto
+                                    </th>
+                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
+                                        Total
                                     </th>
                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                                         Acciones
@@ -40,30 +43,33 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($products as $item)
+                                @foreach($buys as $item)
                                     <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             {{ $item->id }}
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                            {{ $item->name }}
+                                            {{ $item->date_purchase }}
+                                        </td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                            {{ $item->product->name }}
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap
                                         text-right">
-                                            {{ $item->price }}
+                                            {{ $item->amount }}
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap
                                         text-center">
-                                            {{ $item->units_contains }}
+                                            {{ $item->product->price }}
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap
                                         text-right">
-                                            {{ $item->unit_price }}
+                                            {{ $item->subtotal }}
                                         </td>
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap
                                         text-right">
                                             <div class="flex justify-center">
-                                                <a href="{{ route('product.update', $item->slug) }}" class="mr-3">
+                                                <a href="{{ route('buy.update', $item->slug) }}" class="mr-3">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 2424" stroke-width="1.5" stroke="currentColor"
                                                          class="w-6 h-6">
@@ -71,7 +77,7 @@
                                                               d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
                                                     </svg>
                                                 </a>
-                                                <button onclick="Livewire.emit('openModal', 'product.delete',
+                                                <button onclick="Livewire.emit('openModal', 'buy.delete',
                                                 {{ json_encode(['slug' => $item->slug]) }})">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -86,7 +92,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            {{ $products->links() }}
+                            {{ $buys->links() }}
                         </div>
                     </div>
                 </div>

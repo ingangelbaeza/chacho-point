@@ -29,4 +29,12 @@ Route::middleware([
     Route::get('/productos', \App\Http\Livewire\Product\Read::class)->name('product.read');
     Route::get('/productos-crear', \App\Http\Livewire\Product\Create::class)->name('product.create');
     Route::get('/productos-editar/{slug}', \App\Http\Livewire\Product\Update::class)->name('product.update');
+
+    Route::get('/compras', \App\Http\Livewire\Buy\Read::class)->name('buy.read');
+    Route::get('/compras-crear', \App\Http\Livewire\Buy\Create::class)->name('buy.create');
+    Route::get('/compras-editar/{slug}', \App\Http\Livewire\Buy\Update::class)->name('buy.update');
+
+    Route::get('/ventas', \App\Http\Livewire\Sale\Read::class)->name('sale.read');
+    Route::get('/ventas-crear', \App\Http\Livewire\Sale\Create::class)->name('sale.create');
+    Route::get('/ventas-editar/{slug}', \App\Http\Livewire\Sale\Update::class)->name('sale.update');
 });

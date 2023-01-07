@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Product;
+namespace App\Http\Livewire\Buy;
 
-use App\Models\Product;
+use App\Models\Buy;
 use LivewireUI\Modal\ModalComponent;
 
 class Delete extends ModalComponent
@@ -10,16 +10,17 @@ class Delete extends ModalComponent
     public $slug;
     public $confirmation;
 
+
     public function render()
     {
-        return view('livewire.product.delete');
+        return view('livewire.buy.delete');
     }
 
     public function delete()
     {
         if ($this->confirmation === 'confirmar') {
-            Product::where('slug', $this->slug)->delete();
-            $this->emit('refreshProducts');
+            Buy::where('slug', $this->slug)->delete();
+            $this->emit('refreshBuys');
             toast()->success('Colección eliminada correctamente.')->push();
             $this->closeModal();
         } else {
