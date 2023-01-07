@@ -11,12 +11,14 @@
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Scripts -->
+        @toastScripts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
+        <livewire:toasts />
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
@@ -40,5 +42,6 @@
         @stack('modals')
 
         @livewireScripts
+        @livewire('livewire-ui-modal')
     </body>
 </html>

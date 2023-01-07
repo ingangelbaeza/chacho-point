@@ -25,4 +25,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/productos', \App\Http\Livewire\Product\Read::class)->name('product.read');
+    Route::get('/productos-crear', \App\Http\Livewire\Product\Create::class)->name('product.create');
+    Route::get('/productos-editar/{slug}', \App\Http\Livewire\Product\Update::class)->name('product.update');
 });
